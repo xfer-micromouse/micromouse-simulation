@@ -1,0 +1,211 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  contactProperties [
+    DEF frictionless ContactProperties {
+      material2 "frictionless"
+      coulombFriction [
+        0
+      ]
+    }
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.4197500832241933 -0.799603729105867 -0.42946914211998294 4.559067359364628
+  position -0.03232316117822803 -0.010395926718038415 0.49647031147868725
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  translation 0 -5.76884e-10 0.1
+  children [
+    DEF Base_link Pose {
+      children [
+        DEF L_led_pose Pose {
+          translation -0.0425 0.04005 0
+          rotation 0 0 1 1.57079632679
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.01 0.002 0.005
+              }
+            }
+            DEF distance_front DistanceSensor {
+              rotation 0 0 1 1.57079632679
+              name "distance sensor(1)"
+            }
+          ]
+        }
+        DEF LF_led_pose Pose {
+          translation -0.030052 0.070552 0
+          rotation 0 0 1 0.785398
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.01 0.002 0.005
+              }
+            }
+            DEF distance_front DistanceSensor {
+              rotation 0 0 1 1.57079632679
+              name "distance sensor(2)"
+            }
+          ]
+        }
+        DEF F_led_pose Pose {
+          translation 0 0.083 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.01 0.002 0.005
+              }
+            }
+            DEF distance_front DistanceSensor {
+              rotation 0 0 1 1.57079632679
+              name "ds_front"
+            }
+          ]
+        }
+        DEF caster_pose Pose {
+          translation 0 0.06 0
+          children [
+            Solid {
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Capsule {
+                    height 0.01
+                    radius 0.005
+                  }
+                }
+              ]
+              name "solid(2)"
+              contactMaterial "frictionless"
+              boundingObject Capsule {
+                height 0.01
+                radius 0.005
+                subdivision 16
+              }
+            }
+          ]
+        }
+        DEF R_motor_pose Pose {
+          translation 0.04 0 0
+          children [
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -1 0 0
+              }
+              device [
+                RotationalMotor {
+                  name "r_motor"
+                }
+              ]
+              endPoint Solid {
+                rotation 1.9879362691151525e-15 1 1.9879362691054183e-15 1.57079632679
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Cylinder {
+                      height 0.01
+                      radius 0.01
+                    }
+                  }
+                ]
+                name "solid(1)"
+                boundingObject Cylinder {
+                  height 0.01
+                  radius 0.01
+                }
+                physics Physics {
+                }
+              }
+            }
+          ]
+        }
+        DEF L_motor_pose Pose {
+          translation -0.04 0 0
+          children [
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -1 0 0
+              }
+              device [
+                RotationalMotor {
+                  name "l_motor"
+                }
+              ]
+              endPoint Solid {
+                rotation 1.2228764821815533e-15 1 1.2228764821755653e-15 1.57079632679
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Cylinder {
+                      height 0.01
+                      radius 0.01
+                    }
+                  }
+                ]
+                boundingObject Cylinder {
+                  height 0.01
+                  radius 0.01
+                }
+                physics Physics {
+                }
+              }
+            }
+          ]
+        }
+        CadShape {
+          url [
+            "../models/mms-chassies.dae"
+          ]
+        }
+      ]
+    }
+  ]
+  boundingObject Group {
+    children [
+      Pose {
+        translation 0 0.04 0.001
+        children [
+          Cylinder {
+            height 0.002
+            radius 0.0425
+          }
+        ]
+      }
+      Pose {
+        translation 0 0.01025 0.001
+        children [
+          Shape {
+            geometry Box {
+              size 0.085 0.061 0.002
+            }
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+  }
+  controller "test_mms_controller"
+}
