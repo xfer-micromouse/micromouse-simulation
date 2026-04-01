@@ -41,18 +41,3 @@ This project simulates a micromouse robot in Webots while running real AVR firmw
 
 Detailed Sphinx docs are in the `docs/` directory and configured for Read the Docs using `readthedocs.yml`.
 
-## GitHub Docs Integration (Auto Publish on Push)
-
-This repository now includes a GitHub Actions workflow that builds and deploys docs to GitHub Pages on push to `main` or `master`:
-
-- `.github/workflows/docs-pages.yml`
-
-One-time setup in your GitHub repository:
-
-1. Go to **Settings -> Pages**.
-2. Set **Source** to **GitHub Actions**.
-3. Push to `main` (or run the workflow manually from **Actions**).
-
-After deployment, docs will be available at:
-
-- `https://<your-username>.github.io/<your-repo>/`
