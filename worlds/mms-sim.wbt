@@ -17,8 +17,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.4197500832241933 -0.799603729105867 -0.42946914211998294 4.559067359364628
-  position -0.03232316117822803 -0.010395926718038415 0.49647031147868725
+  orientation 0.17004966746180647 0.0012947628706238925 -0.9854346422697134 3.2383609267516507
+  position 0.7438204145235195 -0.0627133967695829 0.3543113313744862
 }
 TexturedBackground {
 }
@@ -42,9 +42,9 @@ Robot {
                 size 0.01 0.002 0.005
               }
             }
-            DEF distance_front DistanceSensor {
+            DEF ds_left DistanceSensor {
               rotation 0 0 1 1.57079632679
-              name "distance sensor(1)"
+              name "ds_left"
             }
           ]
         }
@@ -59,9 +59,9 @@ Robot {
                 size 0.01 0.002 0.005
               }
             }
-            DEF distance_front DistanceSensor {
+            DEF ds_left_front DistanceSensor {
               rotation 0 0 1 1.57079632679
-              name "distance sensor(2)"
+              name "ds_left_front"
             }
           ]
         }
@@ -75,9 +75,43 @@ Robot {
                 size 0.01 0.002 0.005
               }
             }
-            DEF distance_front DistanceSensor {
+            DEF ds_front DistanceSensor {
               rotation 0 0 1 1.57079632679
               name "ds_front"
+            }
+          ]
+        }
+        DEF RF_led_pose Pose {
+          translation 0.030052 0.070552 0
+          rotation 0 0 1 -0.785398
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.01 0.002 0.005
+              }
+            }
+            DEF ds_right_front DistanceSensor {
+              rotation 0 0 1 1.57079632679
+              name "ds_right_front"
+            }
+          ]
+        }
+        DEF R_led_pose Pose {
+          translation 0.0425 0.04005 0
+          rotation 0 0 1 -1.57079632679
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.01 0.002 0.005
+              }
+            }
+            DEF ds_right DistanceSensor {
+              rotation 0 0 1 1.57079632679
+              name "ds_right"
             }
           ]
         }
@@ -102,6 +136,8 @@ Robot {
                 radius 0.005
                 subdivision 16
               }
+              physics Physics {
+              }
             }
           ]
         }
@@ -113,12 +149,16 @@ Robot {
                 axis -1 0 0
               }
               device [
+                PositionSensor {
+                  name "r_encoder"
+                }
                 RotationalMotor {
                   name "r_motor"
+                  maxTorque 0.1
                 }
               ]
               endPoint Solid {
-                rotation 1.9879362691151525e-15 1 1.9879362691054183e-15 1.57079632679
+                rotation 9.218572170393463e-11 1 9.218540768544289e-11 1.5707963267899905
                 children [
                   Shape {
                     appearance PBRAppearance {
@@ -135,6 +175,7 @@ Robot {
                   radius 0.01
                 }
                 physics Physics {
+                  mass 0.01
                 }
               }
             }
@@ -148,12 +189,16 @@ Robot {
                 axis -1 0 0
               }
               device [
+                PositionSensor {
+                  name "l_encoder"
+                }
                 RotationalMotor {
                   name "l_motor"
+                  maxTorque 0.1
                 }
               ]
               endPoint Solid {
-                rotation 1.2228764821815533e-15 1 1.2228764821755653e-15 1.57079632679
+                rotation -1.2927090912979041e-09 1 -1.292707992233183e-09 1.5707963267899925
                 children [
                   Shape {
                     appearance PBRAppearance {
@@ -169,6 +214,7 @@ Robot {
                   radius 0.01
                 }
                 physics Physics {
+                  mass 0.01
                 }
               }
             }
@@ -206,6 +252,7 @@ Robot {
     ]
   }
   physics Physics {
+    mass 0.3
   }
-  controller "test_mms_controller"
+  controller "<extern>"
 }
