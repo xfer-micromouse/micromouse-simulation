@@ -1,0 +1,13 @@
+.important-notice {
+  margin: 1rem 0 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border: 2px solid #b00020;
+  border-left-width: 8px;
+  border-radius: 6px;
+  background: #ffe9ec;
+  color: #4a0009;
+}
+
+.important-notice p {
+  margin: 0.35rem 0;
+}

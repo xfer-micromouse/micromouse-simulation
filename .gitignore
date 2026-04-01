@@ -3,3 +3,19 @@
 .viminfo
 .sdformat/
 **/.idea/
+
+# Build outputs
+build/
+docs/_build/
+**/build/
+**/cmake-build-*/
+**/.pio/
+
+# Local Python env
+.venv/
+
+# Common dot folders that should stay local
+**/.vscode/
+**/.cache/
+**/.pytest_cache/
+**/.mypy_cache/
